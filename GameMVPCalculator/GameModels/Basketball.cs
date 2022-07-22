@@ -4,7 +4,9 @@ namespace GameMVPCalculator.GameModels
 {
     public class Basketball : Game<BasePlayer>
     {
-        public Basketball() : base("Basketball", "....players.csv", "....rules.csv")
+        public Basketball() : base("Basketball", 
+            $"{Directory.GetCurrentDirectory()}/Data/basketball_players.txt", 
+            $"{Directory.GetCurrentDirectory()}/Data/basketball_points.csv")
         {
 
         }
@@ -13,7 +15,10 @@ namespace GameMVPCalculator.GameModels
         {
             // This function will be implemented for each sport.
 
-            decimal maxScore = Players.FirstOrDefault().TotalScore ?? (decimal);
+            if (!Players.Any())
+                throw new Exception("Can't find MVP since there are no players");
+
+            decimal maxScore = Players.First().TotalScore;
 
             foreach (var player in Players)
             {
@@ -30,7 +35,7 @@ namespace GameMVPCalculator.GameModels
                 player.TotalScore += pointToUse.Value;
             }
 
-            return Players.FirstOrDefault(p => p.TotalScore == maxScore);
+            return Players.First(p => p.TotalScore == maxScore);
 
 
         }

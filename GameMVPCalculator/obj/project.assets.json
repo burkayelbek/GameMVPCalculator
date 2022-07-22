@@ -208,23 +208,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\BURKAY\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Can\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\BURKAY\\source\\repos\\GameMVPCalculator\\GameMVPCalculator\\GameMVPCalculator.csproj",
+      "projectUniqueName": "D:\\Projects\\GameMvpCalculator\\GameMVPCalculator\\GameMVPCalculator.csproj",
       "projectName": "GameMVPCalculator",
-      "projectPath": "C:\\Users\\BURKAY\\source\\repos\\GameMVPCalculator\\GameMVPCalculator\\GameMVPCalculator.csproj",
-      "packagesPath": "C:\\Users\\BURKAY\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\BURKAY\\source\\repos\\GameMVPCalculator\\GameMVPCalculator\\obj\\",
+      "projectPath": "D:\\Projects\\GameMvpCalculator\\GameMVPCalculator\\GameMVPCalculator.csproj",
+      "packagesPath": "C:\\Users\\Can\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\GameMvpCalculator\\GameMVPCalculator\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\BURKAY\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Can\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -273,7 +269,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
