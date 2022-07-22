@@ -2,15 +2,10 @@
 {
     public class PointEntity
     {
-        public string DisplayName { get; set; } = default!;
-        public string? ReferenceName { get; set; } = default!;
-
         // Based on the game the role for this point (guard, center, goal keeper etc)
-        public string Position { get; set; } = default!;
-        public decimal Value { get; set; }
-
-
-        public int Priority { get; set; }
+        public char PositionLetter { get; set; } = default!;
+        public string PositionText { get; set; } = default!;
+        public Dictionary<string, decimal> Values { get; set; }
 
 
         /*
