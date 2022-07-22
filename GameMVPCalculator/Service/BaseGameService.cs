@@ -1,27 +1,42 @@
-﻿using GameMVPCalculator.Models;
+﻿using GameMVPCalculator.Features.Basketball;
+using GameMVPCalculator.Models;
 
 namespace GameMVPCalculator.Service
 {
     public class BaseGameService
     {
-        private List< Game<BasePlayer> > games;
+        private List<BaseGame> games;
 
         public BaseGameService()
         {
-
+            games = new List<BaseGame>();
+            CreateGames();
+            ShowMvps();
         }
 
         public void CreateGames()
         {
-            games = new List< Game<BasePlayer> >();
-
-            games.Add( new Game<BasketballPlayer>("Basketball", "....players.csv", "....gamePoints.csv" ) );
+            games.Add(new Basketball());
         }
 
+        public void ShowMvps()
+        {
+            foreach(var game in games)
+            {
+                Console.WriteLine($"Game: {game.Name}");
+                Console.WriteLine($"MVP:\n");
 
+                BasePlayer mvpPlayer = game.FindMvp();
+                Console.WriteLine($"\tName: {mvpPlayer.Name}\n\t" +
+                                  $"Nickname: {mvpPlayer.Nickname}\n\t" +
+                                  $"Number: {mvpPlayer.Number}\n\t" +
+                                  $"Team: {mvpPlayer.Team}\n\t" +
+                                  $"Position: {mvpPlayer.Position}");
 
+                Console.WriteLine("==================================\n\n\n\n");
+            }
+        }
 
-        // Calculate point function, how to make it dynamic ?
 
 
     }
