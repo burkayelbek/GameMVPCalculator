@@ -11,24 +11,17 @@ namespace GameMVPCalculator.Features.Basketball
 
         }
 
-        public override BasketballPlayer FindMvp()
+        public override decimal CalculateMvp(BasePlayer basePlayer, PointEntity pointToUse)
         {
-            // This function will be implemented for each sport.
+            BasketballPlayer player = (BasketballPlayer)basePlayer;
+            return (pointToUse.Values["scored point"] * player.ScoredPoint) +
+                    (pointToUse.Values["rebound"] * player.Rebound) +
+                    (pointToUse.Values["assist"] * player.Assist);
+        }
 
-            if (!Players.Any())
-                throw new Exception("Can't find MVP since there are no players");
-
-            foreach (BasketballPlayer player in Players)
-            {
-
-                PointEntity pointToUse = Points.First(p => p.PositionLetter == player.Position);
-
-                player.TotalScore = (pointToUse.Values["scored point"] * player.ScoredPoint) +
-                                    (pointToUse.Values["rebound"] * player.Rebound) +
-                                    (pointToUse.Values["assist"] * player.Assist);
-            }
-
-            return Players.MaxBy(p => p.TotalScore) as BasketballPlayer;
+        public override decimal WinnerTeamMetric(BasePlayer basePlayer)
+        {
+            return ((BasketballPlayer)basePlayer).ScoredPoint;
         }
 
         public override BasketballPlayer MapPlayerToObject(string[] line)
@@ -45,5 +38,7 @@ namespace GameMVPCalculator.Features.Basketball
                 Assist = int.Parse(line[7]),
             };
         }
+
+
     }
 }

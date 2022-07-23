@@ -1,4 +1,5 @@
 ﻿using GameMVPCalculator.Features.Basketball;
+using GameMVPCalculator.Features.Handball;
 using GameMVPCalculator.Models;
 
 namespace GameMVPCalculator.Service
@@ -17,13 +18,14 @@ namespace GameMVPCalculator.Service
         public void CreateGames()
         {
             games.Add(new Basketball());
+            games.Add(new Handball());
         }
 
         public void ShowMvps()
         {
             foreach(var game in games)
             {
-                Console.WriteLine($"Game: {game.Name}");
+                Console.WriteLine($"Game: {game.Name}\t\tBest team: {game.FindWinnerTeam()}");
                 Console.WriteLine($"MVP:\n");
 
                 BasePlayer mvpPlayer = game.FindMvp();
@@ -31,7 +33,8 @@ namespace GameMVPCalculator.Service
                                   $"Nickname: {mvpPlayer.Nickname}\n\t" +
                                   $"Number: {mvpPlayer.Number}\n\t" +
                                   $"Team: {mvpPlayer.Team}\n\t" +
-                                  $"Position: {mvpPlayer.Position}");
+                                  $"Position: {mvpPlayer.Position}\n\t" +
+                                  $"Total score: {mvpPlayer.TotalScore}");
 
                 Console.WriteLine("==================================\n\n\n\n");
             }

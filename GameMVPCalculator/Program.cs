@@ -27,7 +27,7 @@ app.MapControllers();
 
 using (ServiceProvider serviceProvider = builder.Services.BuildServiceProvider())
 {
-    // Review the FormMain Singleton.
+    // So that we can trigger the service on the startup
     var formMain = serviceProvider.GetRequiredService<BaseGameService>();
 }
 

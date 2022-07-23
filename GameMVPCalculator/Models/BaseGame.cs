@@ -67,9 +67,54 @@
             }
         }
 
-        
+        public BasePlayer FindMvp()
+        {
+            if (!Players.Any())
+                throw new Exception("Can't find MVP since there are no players");
+
+            foreach (BasePlayer player in Players)
+            {
+                PointEntity pointToUse = Points.First(p => p.PositionLetter == player.Position);
+                player.TotalScore = CalculateMvp(player, pointToUse);
+            }
+
+            return Players.MaxBy(p => p.TotalScore);
+        }
+
+        public string FindWinnerTeam()
+        {
+            var groupedTeams = Players.GroupBy(p => new
+            {
+                p.Team
+            }).Select(g => new
+            {
+                Team = g.Key.Team,
+                Metric = g.Sum(player => WinnerTeamMetric(player))
+            }).ToList();
+
+            return groupedTeams.MaxBy(gt => gt.Metric).Team.ToString();
+
+        }
+
+        /// <summary>
+        /// Map the array of player parameters to the object.
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns>mapped Baseplayer object</returns>
         public abstract BasePlayer MapPlayerToObject(string[] line);
-        public abstract BasePlayer FindMvp();
+        /// <summary>
+        /// Sets the metric that will be used for determining which team should be the winner
+        /// </summary>
+        /// <param name="basePlayer"></param>
+        /// <returns>decimal value to compare to the other teams</returns>
+        public abstract decimal WinnerTeamMetric(BasePlayer basePlayer);
+        /// <summary>
+        /// Sets the formula that will be used for each player to calculate whom should be MVP
+        /// </summary>
+        /// <param name="basePlayer"></param>
+        /// <param name="pointToUse"></param>
+        /// <returns></returns>
+        public abstract decimal CalculateMvp(BasePlayer basePlayer, PointEntity pointToUse);
 
     }
 }
