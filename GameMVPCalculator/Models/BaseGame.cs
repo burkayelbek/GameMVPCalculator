@@ -1,8 +1,8 @@
 ﻿namespace GameMVPCalculator.Models
 {
-    public abstract class Game<T> where T : BasePlayer
+    public abstract class BaseGame
     {
-        public Game(string gameName, string playersFilePath, string gamePointsFilePath)
+        public BaseGame(string gameName, string playersFilePath, string gamePointsFilePath)
         {
             Name = gameName;
             StoreAllRulesFromFile(gamePointsFilePath);
@@ -11,8 +11,8 @@
 
 
         public string Name { get; set; } = default!;
-        public List<T> Players { get; set; }
-        public List<PointEntity> Points { get; set; }
+        public List<BasePlayer> Players { get; set; } = new List<BasePlayer>();
+        public List<PointEntity> Points { get; set; } = new List<PointEntity>();
 
 
         private void StoreAllPlayersFromFile(string path)
@@ -26,6 +26,8 @@
                 while ((playerLine = reader.ReadLine()) is not null)
                 {
                     string[] playerParameters = playerLine.Split(splitCharacter);
+
+                    Players.Add(MapPlayerToObject(playerParameters));
                 }
             }
 
@@ -65,7 +67,9 @@
             }
         }
 
-        public abstract T FindMvp();
+        
+        public abstract BasePlayer MapPlayerToObject(string[] line);
+        public abstract BasePlayer FindMvp();
 
     }
 }
